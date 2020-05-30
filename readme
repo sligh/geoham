@@ -1,0 +1,70 @@
+Justin Sligh, 2020
+
+Usage
+
+geoham = Geoham()
+
+geoham = Geoham()
+
+# Get Coordinates from Address. Returns list of floats.
+address = '225 Main Street Newington, CT 06111'
+coordinates = geoham.get_coordinates_from_address(address=address)
+print(coordinates)
+>[41.71468595, -72.72854115000001]
+
+# Get Address from Coordinates. Returns dictionary.
+coordinates = [41.71468595, -72.72854115000001]
+address = geoham.get_address_from_coodinates(coordinates=coordinates)
+print(address)
+>{'building': 'ARRL', 'house_number': '225', 'road': 'Main Street', 'hamlet': 'Newington Junction', 'town': 'Newington', 'county': 'Hartford County', 'state': 'Connecticut', 'postcode': '06111', 'country': 'United States of America', 'country_code': 'us'}
+
+# Get Distance Between Two Coordinates. Returns miles as rounded float.
+# Option rounded=False
+# Option units= kilometers, meters, for feet.
+# Option label=True returns the measurement rounded as a str followed by the unit of measurement.
+station_a = [28.567903177889505, -81.38836621909078]
+station_b = [61.2181, -149.9003]
+distance = geoham.get_distance(a=station_a, b=station_b)
+print(distance)
+>3804
+
+# Get Bearing Between Two Coordinates. Returns degrees rounded as a int.
+station_a = [41.71468595, -72.72854115000001]
+station_b = [28.567903177889505, -81.38836621909078]
+bearing = geoham.get_bearing(a=station_a, b=station_b)
+print(bearing)
+>211
+
+# Get Direction Between Two Coordinates. Returns a string.
+station_a = [28.567903177889505, -81.38836621909078]
+station_b = [62.3209, -140.4564]
+direction = geoham.get_direction_from_coordinates(a=station_a, b=station_b)
+print(direction)
+>NNW
+
+# Get Grid from Coordinate
+# Option precision= 1-4 (default is 3)
+coordiante = [28.567903177889505, -81.38836621909078]
+grid = geoham.get_grid_from_coordinates(coordinates=coordiante)
+print(grid)
+>EL98hn
+
+# Get Country from get_address_from_coordinates() object. Returns str.
+country = geoham.country_from_address(address=address)
+print(country)
+>United States of America
+
+# Get Country from get_address_from_coordinates() object. Returns str.
+country_code = geoham.country_code_from_address(address=address)
+print(country_code)
+>us
+
+# Get US State from get_address_from_coordinates() object. Returns str.
+state = geoham.state_from_address(address=address)
+print(state)
+>Connecticut
+
+# Get US County from get_address_from_coordinates() object. Returns str.
+county = geoham.county_from_address(address=address)
+print(county)
+>Hartford County
